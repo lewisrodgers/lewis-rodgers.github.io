@@ -31,6 +31,18 @@
     ga('create', 'UA-64548447-1', 'auto');
     ga('send', 'pageview');
 
+
+    var url = "https://api.instagram.com/v1/users/self/feed?access_token=1917759821.ce3526e.70804ceda11f4ee29b49ede3ed215a5c";
+
+    //var root = "http://jsonplaceholder.typicode.com";
+
+    $.ajax({
+      url: url,
+      method: 'GET'
+    }).then(function(data) {
+      console.log(data);
+    });
+
   </script>
 
 
