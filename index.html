@@ -20,8 +20,10 @@
       <p><a href="https://www.linkedin.com/in/lewisrodgers">linkedin</a></p>
     </div>
   </div>
+  
+  <script src="js/instafeed.js"></script>
+  <script src="js/main.js"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -30,18 +32,6 @@
 
     ga('create', 'UA-64548447-1', 'auto');
     ga('send', 'pageview');
-
-
-    var url = "https://api.instagram.com/v1/users/self/feed?access_token=1917759821.ce3526e.70804ceda11f4ee29b49ede3ed215a5c";
-
-    //var root = "http://jsonplaceholder.typicode.com";
-
-    $.ajax({
-      url: url,
-      method: 'GET'
-    }).then(function(data) {
-      console.log(data);
-    });
 
   </script>
 
