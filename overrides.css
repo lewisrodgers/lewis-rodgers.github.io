@@ -111,3 +111,7 @@ th {
 .flat-top {
   margin-top: 0;
 }
+
+div.highlight {
+  padding: 0;
+}
