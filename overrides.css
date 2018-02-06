@@ -115,3 +115,7 @@ th {
 div.highlight {
   padding: 0;
 }
+
+.center-image {
+  margin: auto;
+}

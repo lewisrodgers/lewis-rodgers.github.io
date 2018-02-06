@@ -68,7 +68,7 @@ Come back after you have your access and refresh tokens.
 
 The ID of your extension can be found either in the store or the [Developer Dashboard](https://chrome.google.com/webstore/developer/dashboard). Go to the dashboard. Find the extension you want to update, or publish. Then, open the **More info** panel to see its ID. Save for later.
 
-![]({{ "/public/img/app-id.png" | absolute_url }})
+![]({{ "/public/img/app-id.png" | absolute_url }}){: .center-image}
 
 ## Packaging with command-line
 
