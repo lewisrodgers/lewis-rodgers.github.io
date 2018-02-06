@@ -1,8 +1,9 @@
 ---
-title:  "Simplify Chrome extension publishing with the Chrome Web Store API"
+title:  "Simplify Chrome extension publishing with the Chrome Web Store Publish API"
 date: 2018-02-01 08:00:00 -0500
 category: Development
 tags: [chrome extension, bitbucket, continuous delivery]
+version: 1.0
 ---
 
 I was on a consulting engagement with a real estate development company in California. One of the projects involved building out a few Chrome extensions. 
@@ -13,7 +14,7 @@ The extensions were relatively small applications, and figured I could handle th
 
 In fact, at one point I packaged up the wrong extension files by mistake because I was in the wrong git branch. 
 
-But, with automated deployments you can avoid these mistakes. In this post, I’ll show you how to leverage the CWS API and combine it with a continuous deployment tool like Travis CI or — in this case — Bitbucket Pipelines.
+But, with automated deployments you can avoid these mistakes. In this post, I’ll show you how to leverage the CWS Publish API and combine it with a continuous deployment tool like Travis CI or — in this case — Bitbucket Pipelines.
 
 ## Prerequisites
 
@@ -26,13 +27,13 @@ Make sure the following command line tools are installed on your machine:
 
 ## Chrome Web Store API
 
-What does the CWS API do?
+What does the CWS Publish API do?
 
-> The Chrome Web Store API provides a set of REST endpoints for programmatically creating, updating, and publishing items in the Chrome Web Store.
+> The Chrome Web Store Publish API provides a set of REST endpoints for programmatically creating, updating, and publishing items in the Chrome Web Store.
 
 It gives us a way to update an existing store item, and then publish that store item using code instead of visiting the Developer Dashboard. Here’s how the endpoints look:
 
-**Upload package for existing store item**
+Upload package for existing store item:
 
 ```sh
 $ curl \
@@ -44,7 +45,7 @@ $ curl \
 https://www.googleapis.com/upload/chromewebstore/v1.1/items/$APP_ID
 ```
 
-**Publish a store item**
+Publish a store item:
 
 ```sh
 $ curl \
@@ -90,17 +91,17 @@ I’ve put together a basic Chrome extension starter project. [Download the code
 
 _For a detailed review of a Pipelines configuration file, see the [official Bitbucket documentation](https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html)._
 
+{% gist dd39d48baf6cb041fd56a3ced01afcf1 %}
 
-
-The pipeline is divided into two parts by branch name: develop and master. The intent is to call the update endpoint when code is pushed to the develop branch. But, call the publish endpoint when code is pushed to the master branch.
+The pipeline is divided into two parts by branch name: develop and master. The intent is to call the **update** endpoint when code is pushed to the develop branch. But, call the **publish** endpoint when code is pushed to the master branch.
 
 Have a look at the block of code under the **script** keyword. I bet you’ll recognize the last three lines. Let’s look at them in more detail.
 
 ## Package
 
-The CWS API requires extensions to be packaged as a zip file before upload. It’s a good idea to include only the required files needed for the extension to work. Exclude assets like unit tests, the node_modules folder, unrelated configuration files, etc.
+The CWS Publish API requires extensions to be packaged as a zip file before upload. It’s a good idea to include only the required files needed for the extension to work. Exclude assets like unit tests, the node_modules folder, unrelated configuration files, etc.
 
-Here’s a straightforward way to do this: Place extension–specific files into a subfolder called _app_ and the zip command can be as simple as:
+Here’s a straightforward way to do this: Place extension–specific files into a subfolder called "app" and the zip command can be as simple as:
 
 ```sh
 zip -r $FILE_NAME ./app
@@ -110,7 +111,7 @@ _This line prevents us from ever packaging the wrong extension files!_
 
 ## Authorize
 
-During the build process, Pipelines requests an access token so that a call to the CWS API can be made. The access token lasts for 40 minutes before it needs to be refreshed. This is where a refresh token comes into play.
+During the build process, Pipelines requests an access token so it can make calls to the CWS Publish API. The access token lasts for 40 minutes before it needs to be refreshed. This is where a refresh token comes into play.
 
 ```sh
 ACCESS_TOKEN=$(curl "https://accounts.google.com/o/oauth2/token" -d "client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET&refresh_token=$REFRESH_TOKEN&grant_type=refresh_token&redirect_uri=urn:ietf:wg:oauth:2.0:oob" | jq -r '.access_token')
@@ -118,14 +119,14 @@ ACCESS_TOKEN=$(curl "https://accounts.google.com/o/oauth2/token" -d "client_id=$
 
 ## Upload
 
-With the access token in hand, an authorized request to the API can be made to update the chrome extension.
+With the access token in hand, an authorized request to the API can be made to update the extension.
 
 ```sh
 curl \
 -H "Authorization:Bearer $ACCESS_TOKEN" \
 -H "x-goog-api-version:2" \
 -X PUT \
--T master.zip \
+-T $FILE_NAME \
 -v "https://www.googleapis.com/upload/chromewebstore/v1.1/items/$APP_ID"
 ```
 
@@ -144,7 +145,7 @@ curl \
 
 ### Environment variables
 
-To close the loop, we need to allow Bitbucket to continually interact with the CWS API on our behalf. So, back in Bitbucket, add the client ID, client secret, refresh token, and app ID you’ve collected as environment variables to the **Pipelines settings** section. 
+To close the loop, we need to allow Bitbucket to continually interact with the CWS Publish API on our behalf. So, back in Bitbucket, add the client ID, client secret, refresh token, and app ID you’ve collected as environment variables to the **Pipelines settings** section. 
 
 The app ID is publicly available, but you’ll want to secure the others so they aren’t revealed to prying eyes.
 
@@ -154,8 +155,6 @@ From here, your team can start pushing code to the develop and master branches. 
 
 ## Conclusion
 
-Updating and publishing extensions is a repetitive task and can be error prone when done manually. In this post, you learned about the Chrome Web Store API and how it can be used to programmatically upload and publish extensions to the store. You also learned how to automate these tasks by combining the API with a continuous deployment tool.
+Updating and publishing extensions is a repetitive task and can be error prone when done manually. In this post, you learned about the Chrome Web Store Publish API and how it can be used to programmatically upload and publish extensions to the store. You also learned how to automate these tasks by combining the API with a continuous deployment tool.
 
 If Bitbucket isn't your thing, try adapting what you’ve learned to work with your specific development stack.
-
-If you have any questions, you can reach out to me on twitter [@lewisrodgers](https://twitter.com/lewisrodgers).
