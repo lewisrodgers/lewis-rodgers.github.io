@@ -14,14 +14,14 @@ title: Home
 </div>
 
 <div class="related">
-  <h3>Blog posts</h3>
+  <h3 class="flat-top">Blog posts</h3>
   <ul class="related-posts">
     {% for post in site.posts limit:10 %}
       <li class="post-title">
-        <a href="{{ post.url | relative_url }}">
+        <a href="{{ post.url | relative_url }}" class="">
           {{ post.title }}
-          <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small>
         </a>
+        <!-- <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small> -->
       </li>
     {% endfor %}
   </ul>
