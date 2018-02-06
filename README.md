@@ -1,3 +1,13 @@
-# lewis-rodgers.github.io
+# Quick start
 
-My business card on the web!
+Build site and serve locally
+
+```sh
+$ . serve.sh
+```
+
+Open the theme's directory
+
+```sh
+$ open $(bundle show poole)
+```
