@@ -1,13 +1,8 @@
-# Quick start
+## Theme
 
-Build site and serve locally
+Theme based on Poole
 
-```sh
-$ . serve.sh
-```
+![Poole](https://f.cloud.github.com/assets/98681/1834359/71ae4048-73db-11e3-9a3c-df38eb170537.png)
 
-Open the theme's directory
+See Poole in action with [the demo site](http://demo.getpoole.com).
 
-```sh
-$ open $(bundle show poole)
-```

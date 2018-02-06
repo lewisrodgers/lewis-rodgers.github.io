@@ -1,44 +1,38 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# Permalinks
+permalink:           pretty
 
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: lewisrodgers.com
-email: contact@lewisrodgers.com
-tagline: Cloud enthusiast
-description: >- # this means to ignore newlines until "baseurl:"
-  Cloud architect and data engineer, IoT hobbyist, big fan of machine learning.
-baseurl: "/" # the subpath of your site, e.g. /blog
-url: "http://lewisrodgers.com" # the base hostname & protocol for your site, e.g. http://example.com
-# twitter_username: jekyllrb
-# github_username:  jekyll
+# Setup
+title:               lewisrodgers.com
+tagline:             Cloud enthusiast
+url:                 http://lewisrodgers.com
+paginate:            1
+baseurl:             ""
 
-# Build settings
-markdown: kramdown
-theme: jekyll-theme-poole
-plugins:
-  - jekyll-feed
+# Assets
+#
+# We specify the directory for Jekyll so we can use @imports.
+sass:
+  sass_dir:          _sass
+  style:            :compressed
+
+# About/contact
+author:
+  name:              Lewis Rodgers
+  email:             contact@lewisrodgers.com
+  bio:               Cloud architect and data engineer, IoT hobbyist, big fan of machine learning.
+  twitter:           https://twitter.com/lewisrodgers
+  linkedin:          https://www.linkedin.com/in/lewisrodgers/
+
+# Custom vars
+version:             2.0.0
+github:
+  repo:              https://github.com/lewisrodgers/lewisrodgers.github.io
+analytics_id:        UA-64548447-1
+
+# Gems
+gems:
+  - jekyll-paginate
   - jekyll-gist
-
-defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      author: "Lewis Rodgers"
-      bio: "Cloud architect and data engineer, IoT hobbyist, big fan of machine learning."
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -52,4 +46,4 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - README.md
-  - serve.sh
+  - LICENSE.md

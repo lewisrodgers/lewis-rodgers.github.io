@@ -1,0 +1,43 @@
+---
+layout: default
+title: Home
+---
+
+<div class="byline">
+  <div class="byline-avatar">
+    <img class="avatar avatar-sm" src="{{ site.baseurl }}/public/img/avatar.png" alt="">
+  </div>
+  <div class="byline-meta">
+    <div class="byline-author">{{ site.author.name }}</div>
+    <div class="byline-bio">{{ site.author.bio }}</div>
+  </div>
+</div>
+
+<div class="related">
+  <h3>Blog posts</h3>
+  <ul class="related-posts">
+    {% for post in site.posts limit:10 %}
+      <li class="post-title">
+        <a href="{{ post.url | relative_url }}">
+          {{ post.title }}
+          <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!--
+<div class="pagination">
+  {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
+  {% else %}
+    <span class="pagination-item older">Older</span>
+  {% endif %}
+  {% if paginator.previous_page %}
+    <a class="pagination-item newer" href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Newer</a>
+  {% else %}
+    <span class="pagination-item newer">Newer</span>
+  {% endif %}
+</div>
+-->
