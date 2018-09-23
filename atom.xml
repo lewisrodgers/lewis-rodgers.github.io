@@ -1,28 +1,40 @@
----
-layout: null
----
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> - Articles</title>
+    <description>Cloud enthusiast</description>
+    <link>
+    http://localhost:4000</link>
+    
+      
+      <item>
+        <title>Domain-wide delegation — a visual guide</title>
+        
+          <description>&lt;p&gt;An application that we build may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or &lt;strong&gt;scope&lt;/strong&gt; — and choose whether or not to allow it. You’ll know it as this screen:&lt;/p&gt;
 
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+</description>
+        
+        <pubDate>Sun, 22 Apr 2018 00:00:00 -0400</pubDate>
+        <link>
+        http://localhost:4000/Domain-wide-delegation-a-visual-guide</link>
+        <guid isPermaLink="true">http://localhost:4000/Domain-wide-delegation-a-visual-guide</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Simplify Chrome extension publishing with the Chrome Web Store Publish API</title>
+        
+          <description>&lt;p&gt;I was on a consulting engagement with a real estate development company in California. One of the projects involved building out a few Chrome extensions.&lt;/p&gt;
 
- <title>{{ site.title }}</title>
- <link href="{{ site.url }}{{ site.baseurl }}/atom.xml" rel="self"/>
- <link href="{{ site.url }}{{ site.baseurl }}/"/>
- <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>{{ site.url }}</id>
- <author>
-   <name>{{ site.author.name }}</name>
-   <email>{{ site.author.email }}</email>
- </author>
-
- {% for post in site.posts %}
- <entry>
-   <title>{{ post.title | xml_escape }}</title>
-   <link href="{{ site.url }}{{ site.baseurl }}{{ post.url }}"/>
-   <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>{{ site.url }}{{ post.id }}</id>
-   <content type="html">{{ post.content | xml_escape }}</content>
- </entry>
- {% endfor %}
-
-</feed>
+</description>
+        
+        <pubDate>Thu, 01 Feb 2018 00:00:00 -0500</pubDate>
+        <link>
+        http://localhost:4000/simplify-chrome-extensions-chrome-web-store-publish-api</link>
+        <guid isPermaLink="true">http://localhost:4000/simplify-chrome-extensions-chrome-web-store-publish-api</guid>
+      </item>
+      
+    
+  </channel>
+</rss>
