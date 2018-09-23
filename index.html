@@ -1,39 +1,43 @@
 ---
 layout: default
-current: home
-class: 'home-template'
-navigation: True
+title: Home
 ---
 
-<!-- < default -->
-<!-- The tag above means: insert everything in this file
-into the {body} of the default.hbs template -->
+<div class="byline">
+  <div class="byline-avatar">
+    <img class="avatar avatar-sm" src="{{ site.baseurl }}/public/portrait.jpg" alt="">
+  </div>
+  <div class="byline-meta">
+    <div class="byline-author">{{ site.author.name }}</div>
+    <div class="byline-bio">{{ site.author.bio }}</div>
+  </div>
+</div>
 
-<!-- The big featured header, it uses blog cover image as a BG if available -->
-<header class="site-header outer {% if page.cover or site.cover %}" style="background-image:  url({{ site.baseurl }}{% if page.cover %}{{ page.cover }}{% elsif site.cover %}{{ site.cover }}{% endif %}) {% else %}no-cover{% endif %}">
-    <div class="inner">
-        <div class="site-header-content">
-            <h1 class="site-title">
-                {% if site.logo %}
-                    <img class="site-logo" src="{{ site.baseurl }}{{ site.logo }}" alt="{{ site.title }}"/>
-                {% else %}
-                    {{ site.title }}
-                {% endif %}
-            </h1>
-            <h2 class="site-description">{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}</h2>
-        </div>
-        {% include site-nav.html %}
-    </div>
-</header>
+<div class="related">
+  <h3 class="flat-top">Blog posts</h3>
+  <ul class="related-posts">
+    {% for post in site.posts limit:10 %}
+      <li class="post-title">
+        <a href="{{ post.url | relative_url }}" class="">
+          {{ post.title }}
+        </a>
+        <!-- <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small> -->
+      </li>
+    {% endfor %}
+  </ul>
+</div>
 
-<!-- The main content area -->
-<main id="site-main" class="site-main outer" role="main">
-    <div class="inner">
-
-        <div class="post-feed">
-            <!-- The tag below includes the markup for each post - partials/post-card.hbs -->
-            {%  include post-card.html %}
-        </div>
-
-    </div>
-</main>
+<!--
+<div class="pagination">
+  {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
+  {% else %}
+    <span class="pagination-item older">Older</span>
+  {% endif %}
+  {% if paginator.previous_page %}
+    <a class="pagination-item newer" href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Newer</a>
+  {% else %}
+    <span class="pagination-item newer">Newer</span>
+  {% endif %}
+</div>
+-->

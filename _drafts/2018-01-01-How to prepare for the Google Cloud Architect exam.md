@@ -1,9 +1,8 @@
 ---
 layout: post
-title:  "Simplify Chrome extension publishing with the Chrome Web Store Publish API"
+title:  "How to prepare for the Google Cloud Architect exam"
 category: Development
 tags: [chrome extension, bitbucket, continuous delivery]
-hash: tD19
 ---
 
 I was on a consulting engagement with a real estate development company in California. One of the projects involved building out a few Chrome extensions. 
@@ -69,7 +68,7 @@ Come back after you have your access and refresh tokens.
 
 The ID of your extension can be found either in the store or the [Developer Dashboard](https://chrome.google.com/webstore/developer/dashboard). Go to the dashboard. Find the extension you want to update, or publish. Then, open the **More info** panel to see its ID. Save for later.
 
-![]({{ "/public/img/tD19-app-id.png" | absolute_url }}){: .center-image}
+![]({{ "/public/img/app-id.png" | absolute_url }})
 
 ## Packaging with command-line
 
@@ -149,7 +148,7 @@ To close the loop, we need to allow Bitbucket to continually interact with the C
 
 The app ID is publicly available, but you’ll want to secure the others so they aren’t revealed to prying eyes.
 
-![]({{ "/public/img/tD19-environment-variables.png" | absolute_url }})
+![]({{ "/public/img/environment-variables.png" | absolute_url }})
 
 From here, your team can start pushing code to the develop and master branches. Pipelines will take care of packaging the extension, uploading it to the store, and publishing it.
 
