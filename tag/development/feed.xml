@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
+  <link href="http://localhost:4000/tag/development/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="http://localhost:4000/" rel="alternate" type="text/html" />
+  <updated>2018-09-23T16:11:31-04:00</updated>
+  <id>http://localhost:4000/tag/development/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Lewis Rodgers | </title>
+  
+
+  
+    <subtitle>Cloud enthusiast</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Simplify Chrome extension publishing with the Chrome Web Store Publish API</title>
+      <link href="http://localhost:4000/simplify-chrome-extensions-chrome-web-store-publish-api" rel="alternate" type="text/html" title="Simplify Chrome extension publishing with the Chrome Web Store Publish API" />
+      <published>2018-02-01T00:00:00-05:00</published>
+      <updated>2018-02-01T00:00:00-05:00</updated>
+      <id>http://localhost:4000/simplify-chrome-extensions-chrome-web-store-publish-api</id>
+      <content type="html" xml:base="http://localhost:4000/simplify-chrome-extensions-chrome-web-store-publish-api">&lt;p&gt;I was on a consulting engagement with a real estate development company in California. One of the projects involved building out a few Chrome extensions.&lt;/p&gt;
+
+&lt;p&gt;For this effort, the team included two developers and myself. I took on a DevOps role so that the others could focus on code. This meant I was responsible for versioning, packaging, uploading, and publishing the extensions to the Chrome Web Store (CWS, or just store). It allowed me to control what would be released for testing, QA, and to stakeholders.&lt;/p&gt;
+
+&lt;p&gt;The extensions were relatively small applications, and figured I could handle the DevOps manually. But that was a mistake. Turns out, juggling multiple extensions is really tricky.&lt;/p&gt;
+
+&lt;p&gt;In fact, at one point I packaged up the wrong extension files by mistake because I was in the wrong git branch.&lt;/p&gt;
+
+&lt;p&gt;But, with automated deployments you can avoid these mistakes. In this post, I’ll show you how to leverage the CWS Publish API and combine it with a continuous deployment tool like Travis CI or — in this case — Bitbucket Pipelines.&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+
+&lt;p&gt;Make sure the following command line tools are installed on your machine:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;curl - command-line tool for transferring data specified with URL syntax.&lt;/li&gt;
+  &lt;li&gt;zip - command-line tool for archiving files.&lt;/li&gt;
+  &lt;li&gt;jq - lightweight and flexible command-line JSON processor.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;chrome-web-store-api&quot;&gt;Chrome Web Store API&lt;/h2&gt;
+
+&lt;p&gt;What does the CWS Publish API do?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The Chrome Web Store Publish API provides a set of REST endpoints for programmatically creating, updating, and publishing items in the Chrome Web Store.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It gives us a way to update an existing store item, and then publish that store item using code instead of visiting the Developer Dashboard. Here’s how the endpoints look:&lt;/p&gt;
+
+&lt;p&gt;Upload package for existing store item:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: Bearer &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$TOKEN&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x-goog-api-version: 2&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; PUT &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$FILE_NAME&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+https://www.googleapis.com/upload/chromewebstore/v1.1/items/&lt;span class=&quot;nv&quot;&gt;$APP_ID&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Publish a store item:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: Bearer &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$TOKEN&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x-goog-api-version: 2&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Content-Length: 0&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; POST &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+https://www.googleapis.com/chromewebstore/v1.1/items/&lt;span class=&quot;nv&quot;&gt;$APP_ID&lt;/span&gt;/publish&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;These endpoints can be run using curl in the terminal, but we need a few things: an access token, our packaged extension, and the app ID of the extension we want to update or publish. Let’s address these in the next sections.&lt;/p&gt;
+
+&lt;h2 id=&quot;access-token&quot;&gt;Access Token&lt;/h2&gt;
+
+&lt;p&gt;First, take care of authorization. There’s a well documented guide in the official chrome developer docs on how to do this. So, head over to &lt;a href=&quot;https://developer.chrome.com/webstore/using_webstore_api#beforeyoubegin&quot;&gt;Using the Chrome Web Store Publish API&lt;/a&gt; and do the steps under the section titled &lt;a href=&quot;https://developer.chrome.com/webstore/using_webstore_api#beforeyoubegin&quot;&gt;Before you begin&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Come back after you have your access and refresh tokens.&lt;/p&gt;
+
+&lt;h2 id=&quot;app-id&quot;&gt;App ID&lt;/h2&gt;
+
+&lt;p&gt;The ID of your extension can be found either in the store or the &lt;a href=&quot;https://chrome.google.com/webstore/developer/dashboard&quot;&gt;Developer Dashboard&lt;/a&gt;. Go to the dashboard. Find the extension you want to update, or publish. Then, open the &lt;strong&gt;More info&lt;/strong&gt; panel to see its ID. Save for later.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/tD19-app-id.png&quot; alt=&quot;&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;packaging-with-command-line&quot;&gt;Packaging with command-line&lt;/h2&gt;
+
+&lt;p&gt;You probably already know that in order to upload an extension to the store, it should be packaged as a zip file. We don’t want to do this step manually, though. We want to automate it. The &lt;strong&gt;zip&lt;/strong&gt; command will help with this.&lt;/p&gt;
+
+&lt;p&gt;For example, in the terminal we can do:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;zip &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; my_file.zip .&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;And everything in the current directory will be compressed into a zip file.&lt;/p&gt;
+
+&lt;p&gt;We’ll adjust the command slightly in the next section.&lt;/p&gt;
+
+&lt;h2 id=&quot;bitbucket-pipelines&quot;&gt;Bitbucket Pipelines&lt;/h2&gt;
+
+&lt;p&gt;I’ve put together a basic Chrome extension starter project. &lt;a href=&quot;https://bitbucket.org/lewis_rodgers/chrome-extension-continuous-delivery/get/89e088a5137e.zip&quot;&gt;Download the code from Bitbucket&lt;/a&gt;. Then, open &lt;code class=&quot;highlighter-rouge&quot;&gt;bitbucket-pipelines.yml&lt;/code&gt;. This is the configuration file used by Bitbucket Pipelines.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;For a detailed review of a Pipelines configuration file, see the &lt;a href=&quot;https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html&quot;&gt;official Bitbucket documentation&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The pipeline is divided into two parts by branch name: develop and master. The intent is to call the &lt;strong&gt;update&lt;/strong&gt; endpoint when code is pushed to the develop branch. But, call the &lt;strong&gt;publish&lt;/strong&gt; endpoint when code is pushed to the master branch.&lt;/p&gt;
+
+&lt;p&gt;Have a look at the block of code under the &lt;strong&gt;script&lt;/strong&gt; keyword. I bet you’ll recognize the last three lines. Let’s look at them in more detail.&lt;/p&gt;
+
+&lt;h2 id=&quot;package&quot;&gt;Package&lt;/h2&gt;
+
+&lt;p&gt;The CWS Publish API requires extensions to be packaged as a zip file before upload. It’s a good idea to include only the required files needed for the extension to work. Exclude assets like unit tests, the node_modules folder, unrelated configuration files, etc.&lt;/p&gt;
+
+&lt;p&gt;Here’s a straightforward way to do this: Place extension–specific files into a subfolder called “app” and the zip command can be as simple as:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;zip &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$FILE_NAME&lt;/span&gt; ./app&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;em&gt;This line prevents us from ever packaging the wrong extension files!&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;authorize&quot;&gt;Authorize&lt;/h2&gt;
+
+&lt;p&gt;During the build process, Pipelines requests an access token so it can make calls to the CWS Publish API. The access token lasts for 40 minutes before it needs to be refreshed. This is where a refresh token comes into play.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;ACCESS_TOKEN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;curl &lt;span class=&quot;s2&quot;&gt;&quot;https://accounts.google.com/o/oauth2/token&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;client_id=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$CLIENT_ID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;client_secret=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$CLIENT_SECRET&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;refresh_token=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$REFRESH_TOKEN&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;grant_type=refresh_token&amp;amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob&quot;&lt;/span&gt; | jq &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'.access_token'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;upload&quot;&gt;Upload&lt;/h2&gt;
+
+&lt;p&gt;With the access token in hand, an authorized request to the API can be made to update the extension.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;curl &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization:Bearer &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ACCESS_TOKEN&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x-goog-api-version:2&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; PUT &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$FILE_NAME&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://www.googleapis.com/upload/chromewebstore/v1.1/items/&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$APP_ID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;publish&quot;&gt;Publish&lt;/h3&gt;
+
+&lt;p&gt;To publish the extension we can use the following request:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;curl &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization:Bearer &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ACCESS_TOKEN&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x-goog-api-version:2&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Content-Length:0&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; POST &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://www.googleapis.com/chromewebstore/v1.1/items/&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$APP_ID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/publish&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;environment-variables&quot;&gt;Environment variables&lt;/h3&gt;
+
+&lt;p&gt;To close the loop, we need to allow Bitbucket to continually interact with the CWS Publish API on our behalf. So, back in Bitbucket, add the client ID, client secret, refresh token, and app ID you’ve collected as environment variables to the &lt;strong&gt;Pipelines settings&lt;/strong&gt; section.&lt;/p&gt;
+
+&lt;p&gt;The app ID is publicly available, but you’ll want to secure the others so they aren’t revealed to prying eyes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/tD19-environment-variables.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From here, your team can start pushing code to the develop and master branches. Pipelines will take care of packaging the extension, uploading it to the store, and publishing it.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Updating and publishing extensions is a repetitive task and can be error prone when done manually. In this post, you learned about the Chrome Web Store Publish API and how it can be used to programmatically upload and publish extensions to the store. You also learned how to automate these tasks by combining the API with a continuous deployment tool.&lt;/p&gt;
+
+&lt;p&gt;If Bitbucket isn’t your thing, try adapting what you’ve learned to work with your specific development stack.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name></name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="development" />
+      
+
+      
+        <summary type="html">I was on a consulting engagement with a real estate development company in California. One of the projects involved building out a few Chrome extensions.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>
