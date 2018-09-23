@@ -1,43 +1,12 @@
----
-layout: default
-title: Home
----
-
-<div class="byline">
-  <div class="byline-avatar">
-    <img class="avatar avatar-sm" src="{{ site.baseurl }}/public/portrait.jpg" alt="">
-  </div>
-  <div class="byline-meta">
-    <div class="byline-author">{{ site.author.name }}</div>
-    <div class="byline-bio">{{ site.author.bio }}</div>
-  </div>
-</div>
-
-<div class="related">
-  <h3 class="flat-top">Blog posts</h3>
-  <ul class="related-posts">
-    {% for post in site.posts limit:10 %}
-      <li class="post-title">
-        <a href="{{ post.url | relative_url }}" class="">
-          {{ post.title }}
-        </a>
-        <!-- <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small> -->
-      </li>
-    {% endfor %}
-  </ul>
-</div>
-
-<!--
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    <a class="pagination-item newer" href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Newer</a>
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
-</div>
--->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  Hello
+</body>
+</html>
