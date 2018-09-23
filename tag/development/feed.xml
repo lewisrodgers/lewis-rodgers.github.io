@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="http://localhost:4000/tag/development/feed.xml" rel="self" type="application/atom+xml" />
   <link href="http://localhost:4000/" rel="alternate" type="text/html" />
-  <updated>2018-09-23T16:11:31-04:00</updated>
+  <updated>2018-09-23T19:02:46-04:00</updated>
   <id>http://localhost:4000/tag/development/feed.xml</id>
 
   
@@ -111,7 +111,7 @@ https://www.googleapis.com/chromewebstore/v1.1/items/&lt;span class=&quot;nv&quo
 
 &lt;p&gt;The ID of your extension can be found either in the store or the &lt;a href=&quot;https://chrome.google.com/webstore/developer/dashboard&quot;&gt;Developer Dashboard&lt;/a&gt;. Go to the dashboard. Find the extension you want to update, or publish. Then, open the &lt;strong&gt;More info&lt;/strong&gt; panel to see its ID. Save for later.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/tD19-app-id.png&quot; alt=&quot;&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/tD19-app-id.png&quot; alt=&quot;&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;packaging-with-command-line&quot;&gt;Packaging with command-line&lt;/h2&gt;
 
@@ -179,7 +179,7 @@ https://www.googleapis.com/chromewebstore/v1.1/items/&lt;span class=&quot;nv&quo
 
 &lt;p&gt;The app ID is publicly available, but you’ll want to secure the others so they aren’t revealed to prying eyes.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/tD19-environment-variables.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/tD19-environment-variables.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;From here, your team can start pushing code to the develop and master branches. Pipelines will take care of packaging the extension, uploading it to the store, and publishing it.&lt;/p&gt;
 
