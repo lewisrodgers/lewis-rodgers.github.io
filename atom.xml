@@ -10,7 +10,7 @@
       <item>
         <title>Domain-wide delegation — a visual guide</title>
         
-          <description>&lt;p&gt;An application that we build may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or &lt;strong&gt;scope&lt;/strong&gt; — and choose whether or not to allow it. You’ll know it as this screen:&lt;/p&gt;
+          <description>&lt;p&gt;An application may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or &lt;strong&gt;scope&lt;/strong&gt; — and choose whether or not to allow it. You’ll know it as this screen:&lt;/p&gt;
 
 </description>
         
@@ -25,7 +25,7 @@
       <item>
         <title>Simplify Chrome extension publishing with the Chrome Web Store Publish API</title>
         
-          <description>&lt;p&gt;I was on a consulting engagement with a real estate development company in California. One of the projects involved building out a few Chrome extensions.&lt;/p&gt;
+          <description>&lt;p&gt;During a consulting engagement with a real estate development company in California, one of the projects involved building out a few Chrome extensions.&lt;/p&gt;
 
 </description>
         

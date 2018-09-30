@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="http://localhost:4000/tag/g-suite/feed.xml" rel="self" type="application/atom+xml" />
   <link href="http://localhost:4000/" rel="alternate" type="text/html" />
-  <updated>2018-09-23T19:08:25-04:00</updated>
+  <updated>2018-09-30T19:47:57-04:00</updated>
   <id>http://localhost:4000/tag/g-suite/feed.xml</id>
 
   
@@ -49,7 +49,7 @@
       <published>2018-04-22T00:00:00-04:00</published>
       <updated>2018-04-22T00:00:00-04:00</updated>
       <id>http://localhost:4000/Domain-wide%20delegation%20a%20visual%20guide</id>
-      <content type="html" xml:base="http://localhost:4000/Domain-wide-delegation-a-visual-guide">&lt;p&gt;An application that we build may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or &lt;strong&gt;scope&lt;/strong&gt; — and choose whether or not to allow it. You’ll know it as this screen:&lt;/p&gt;
+      <content type="html" xml:base="http://localhost:4000/Domain-wide-delegation-a-visual-guide">&lt;p&gt;An application may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or &lt;strong&gt;scope&lt;/strong&gt; — and choose whether or not to allow it. You’ll know it as this screen:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/Ha52-authorization.png&quot; alt=&quot;authorization&quot; /&gt;&lt;/p&gt;
 
@@ -79,13 +79,11 @@
 
 &lt;ol&gt;
   &lt;li&gt;A developer from the App Dev team&lt;/li&gt;
-  &lt;li&gt;The GCP admin* from the Operations team&lt;/li&gt;
+  &lt;li&gt;The GCP admin from the Operations team&lt;/li&gt;
   &lt;li&gt;And the G Suite domain administrator from some other part of IT&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;*GCP admin is a generalized term I’m using to refer to someone who has the permissions to create service accounts, whether it be a GCP Project Owner or a Service Account Admin.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;small&gt; &lt;em&gt;GCP admin is a generalized term I’m using to refer to someone who has the permissions to create service accounts, whether it be a GCP Project Owner or a Service Account Admin.&lt;/em&gt;&lt;/small&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/Ha52-actors.png&quot; alt=&quot;actors&quot; /&gt;&lt;/p&gt;
 
@@ -105,9 +103,7 @@
 
 &lt;p&gt;In order to get the credentials, App Dev asks the GCP admin for a service account with DwD enabled. The GCP admin enables the proper APIs, chooses (or creates) a service account, and makes the credentials available to the developers.&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Sidenote: Security’s Trust No One policy means it doesn’t like the idea of handing over credentials as plain text to anyone outside the Operations team. So, the GCP admin might use Cloud KMS to encrypt the credentials. I’ve left this out of the diagrams so it doesn’t over complicate them.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;small&gt;&lt;em&gt;Security’s Trust No One policy means it doesn’t like the idea of handing over credentials as plain text to anyone outside the Operations team. So, the GCP admin might use Cloud KMS to encrypt the credentials. I’ve left this out of the diagrams so it doesn’t over complicate them.&lt;/em&gt;&lt;/small&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/Ha52-gcp_admin.png&quot; alt=&quot;gcp_admin&quot; /&gt;&lt;/p&gt;
 
@@ -150,7 +146,7 @@
       
 
       
-        <summary type="html">An application that we build may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or scope — and choose whether or not to allow it. You’ll know it as this screen:</summary>
+        <summary type="html">An application may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or scope — and choose whether or not to allow it. You’ll know it as this screen:</summary>
       
 
       

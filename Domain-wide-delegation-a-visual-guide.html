@@ -43,7 +43,7 @@
     <meta property="og:site_name" content="Lewis Rodgers" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Domain-wide delegation — a visual guide" />
-    <meta property="og:description" content="An application that we build may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to" />
+    <meta property="og:description" content="An application may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or scope" />
     <meta property="og:url" content="http://localhost:4000/Domain-wide-delegation-a-visual-guide" />
     <meta property="og:image" content="http://localhost:4000/assets/images/Ha52-overview.png" />
     <meta property="article:publisher" content="https://www.facebook.com/false" />
@@ -53,7 +53,7 @@
     <meta property="article:tag" content="G Suite" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Domain-wide delegation — a visual guide" />
-    <meta name="twitter:description" content="An application that we build may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to" />
+    <meta name="twitter:description" content="An application may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or scope" />
     <meta name="twitter:url" content="http://localhost:4000/" />
     <meta name="twitter:image" content="http://localhost:4000/assets/images/Ha52-overview.png" />
     <meta name="twitter:label1" content="Written by" />
@@ -85,7 +85,7 @@
         "@type": "WebPage",
         "@id": "http://localhost:4000/Domain-wide-delegation-a-visual-guide"
     },
-    "description": "An application that we build may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to"
+    "description": "An application may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or scope"
 }
     </script>
 
@@ -177,15 +177,15 @@ into the {body} of the default.hbs template -->
             </header>
 
             
-            <figure class="post-full-image" style="background-image: url(/assets/images/Ha52-overview.png)">
-            </figure>
+            <!-- <figure class="post-full-image" style="background-image: url(/assets/images/Ha52-overview.png)">
+            </figure> -->
             
 
             
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>An application that we build may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or <strong>scope</strong> — and choose whether or not to allow it. You’ll know it as this screen:</p>
+                    <p>An application may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or <strong>scope</strong> — and choose whether or not to allow it. You’ll know it as this screen:</p>
 
 <p><img src="/assets/images/Ha52-authorization.png" alt="authorization" /></p>
 
@@ -215,13 +215,11 @@ into the {body} of the default.hbs template -->
 
 <ol>
   <li>A developer from the App Dev team</li>
-  <li>The GCP admin* from the Operations team</li>
+  <li>The GCP admin from the Operations team</li>
   <li>And the G Suite domain administrator from some other part of IT</li>
 </ol>
 
-<blockquote>
-  <p>*GCP admin is a generalized term I’m using to refer to someone who has the permissions to create service accounts, whether it be a GCP Project Owner or a Service Account Admin.</p>
-</blockquote>
+<p><small> <em>GCP admin is a generalized term I’m using to refer to someone who has the permissions to create service accounts, whether it be a GCP Project Owner or a Service Account Admin.</em></small></p>
 
 <p><img src="/assets/images/Ha52-actors.png" alt="actors" /></p>
 
@@ -241,9 +239,7 @@ into the {body} of the default.hbs template -->
 
 <p>In order to get the credentials, App Dev asks the GCP admin for a service account with DwD enabled. The GCP admin enables the proper APIs, chooses (or creates) a service account, and makes the credentials available to the developers.</p>
 
-<blockquote>
-  <p>Sidenote: Security’s Trust No One policy means it doesn’t like the idea of handing over credentials as plain text to anyone outside the Operations team. So, the GCP admin might use Cloud KMS to encrypt the credentials. I’ve left this out of the diagrams so it doesn’t over complicate them.</p>
-</blockquote>
+<p><small><em>Security’s Trust No One policy means it doesn’t like the idea of handing over credentials as plain text to anyone outside the Operations team. So, the GCP admin might use Cloud KMS to encrypt the credentials. I’ve left this out of the diagrams so it doesn’t over complicate them.</em></small></p>
 
 <p><img src="/assets/images/Ha52-gcp_admin.png" alt="gcp_admin" /></p>
 
@@ -342,7 +338,7 @@ into the {body} of the default.hbs template -->
                     <h2 class="post-card-title">Simplify Chrome extension publishing with the Chrome Web Store Publish API</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>I was on a consulting engagement with a real estate development company in California. One of the projects involved building out a few Chrome extensions. For this effort, the team included two developers</p>
+                    <p>During a consulting engagement with a real estate development company in California, one of the projects involved building out a few Chrome extensions. For this effort, the team included two developers and myself.</p>
                 </section>
             </a>
             <footer class="post-card-meta">
