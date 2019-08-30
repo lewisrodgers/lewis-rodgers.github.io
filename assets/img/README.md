@@ -1,0 +1,1 @@
+The `assets/img` folder contains site-wide images
