@@ -6,7 +6,7 @@ tags: [G Suite, GCP]
 ---
 An application may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or **scope** — and choose whether or not to allow it. You'll know it as this screen:
 
-![authorization]
+{% include image.html name="authorization.png" alt="Sign-in screen" caption="Sign-in screen" %}
 
 Sometimes a business case calls for a tool that should access employee data without the need for manual authorization by that employee. We use domain-wide delegation (DwD) of authority to achieve this.
 
