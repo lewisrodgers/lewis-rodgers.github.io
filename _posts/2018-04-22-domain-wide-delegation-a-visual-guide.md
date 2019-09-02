@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Domain-wide delegation—a visual guide"
-date:   2018-04-22 10:40:21 -0400
+title: "Domain-wide delegation—a visual guide"
+date: 2018-04-22 10:40:21 -0400
 tags: [G Suite, GCP]
 ---
 An application may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or **scope** — and choose whether or not to allow it. You'll know it as this screen:
@@ -20,7 +20,7 @@ For a detailed step-by-step guide in enabling DwD see: [Perform G Suite Domain-W
 
 Visually, how the pieces fit together looks something like this...
 
-![overview]
+{% include image.html name="overview.png" %}
 
 Ok, now let's see how the process might play out when separate teams are responsible for different steps.
 
@@ -36,11 +36,11 @@ There are distinct actors responsible for providing and consuming each of these 
 
 <small> _GCP admin is a generalized term I'm using to refer to someone who has the permissions to create service accounts, whether it be a GCP Project Owner or a Service Account Admin._</small>
 
-![actors]
+{% include image.html name="actors.png" %}
 
 And here's an example what the division of responsibilities looks like...
 
-![responsibility]
+{% include image.html name="responsibility.png" %}
 
 The Security team would be a factor in this dance as well, but let's pretend everything has the security stamp of approval.
 
@@ -48,7 +48,7 @@ The Security team would be a factor in this dance as well, but let's pretend eve
 
 In our scenario, App Dev wants to build an application that accesses user data on the domain. They determine the APIs and list of API scopes to be used. What's missing is the credentials needed for authentication between the application and G Suite domain.
 
-![developer]
+{% include image.html name="developer.png" %}
 
 ## The GCP admin
 
@@ -56,7 +56,7 @@ In order to get the credentials, App Dev asks the GCP admin for a service accoun
 
 <small>_Security's Trust No One policy means it doesn't like the idea of handing over credentials as plain text to anyone outside the Operations team. So, the GCP admin might use Cloud KMS to encrypt the credentials. I've left this out of the diagrams so it doesn't over complicate them._</small>
 
-![gcp_admin]
+{% include image.html name="gcp_admin.png" %}
 
 ## The G Suite admin
 
@@ -64,7 +64,7 @@ Finally, the application is registered with the G Suite domain so that the domai
 
 To do this, the G Suite admin needs the client ID associated with the service account and API scopes. They'll add these values to the [Manage client API access](https://support.google.com/a/answer/162106?hl=en) page of the G Suite console.
 
-![gsuite-admin]
+{% include image.html name="gsuite_admin.png" %}
 
 ## Where to go from here
 
@@ -76,11 +76,3 @@ Often, you'll want to verify the DwD configuration is set up correctly. Test wit
 - [Perform G Suite Domain-Wide Delegation of Authority](https://developers.google.com/admin-sdk/directory/v1/guides/delegation)
 - [Perform Google Apps domain-wide delegation of authority](https://developers.google.com/+/domains/authentication/delegation)
 - [OAuth: Managing API client access](https://support.google.com/a/answer/162106?hl=en)
-
-[authorization]: {{ page.images }}{{ "authorization.png" }}
-[overview]: {{ page.images }}{{ "overview.png"  }}
-[actors]: {{ page.images }}{{ "actors.png"  }}
-[responsibility]: {{ page.images }}{{ "responsibility.png"  }}
-[developer]: {{ page.images }}{{ "developer.png"  }}
-[gcp_admin]: {{ page.images }}{{ "gcp_admin.png"  }}
-[gsuite-admin]: {{ page.images }}{{ "gsuite_admin.png"  }}
