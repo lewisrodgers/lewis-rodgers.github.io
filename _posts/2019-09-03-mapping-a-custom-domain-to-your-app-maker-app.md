@@ -37,4 +37,4 @@ Think about using a Google Site as a landing page for multiple related App Maker
 There’s an [open feature request](https://issuetracker.google.com/issues/63382989){:target="_blank"} in the Google issue tracker (opened in 2017) requesting the ability to customize the deployment URL to improve readability. This would be a nice alternative since any App Maker author could customize the deployment URL directly from the App Maker UI. But, it's hard to say when, or if, this feature will become available. 
 
 
-[^1]: [https://support.google.com/a/answer/7392423](https://support.google.com/a/answer/7392423)
+[^1]: [https://support.google.com/a/answer/7392423](https://support.google.com/a/answer/7392423){:target="_blank"}
