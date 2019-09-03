@@ -30,7 +30,7 @@ Once you’ve created the Google Site, embed (or add a link to) the deployed App
 
 {% include image.html name="embedded-app-maker.png" caption="App Maker app embedded on a Google Site." %}
 
-Think about using a Google Site as a landing page for multiple related App Maker applications. And, store documentation on how to you your apps here, too.
+Think about using a Google Site as a landing page for multiple related App Maker applications. And maybe even store documentation on how to use these apps here, too.
 
 ## Custom deployment URL
 
