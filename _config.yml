@@ -28,6 +28,7 @@ twitter_username: lewisrodgers
 github_username:  lewisrodgers
 linkedin_username: lewisrodgers
 google_analytics: UA-64548447-1
+permalink: none
 
 # Build settings
 markdown: kramdown
