@@ -4,7 +4,7 @@ title: "Mapping a custom domain to your App Maker app"
 date: 2019-09-03 10:40:21 -0400
 tags: [G Suite]
 ---
-While it’s possible to map a friendlier URL to an App Maker deployment, it requires privileged access to your domain registrar or organization’s G Suite admin console. If you don’t have this level of clearance, then you’ll need to make friends with your organization's admins and coordinate.
+While it’s possible to map a friendlier URL to an App Maker deployment, it requires privileged access to your domain registrar or organization’s G Suite admin console. If you don’t have this level of clearance, then you’ll need to coordinate with your organization's admins to do some of the things described below.
 
 ## Subdomain forwarding
 
