@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Mapping a custom domain to your App Maker app"
+description: ""
+image: ""
 date: 2019-09-03 10:40:21 -0400
 tags: [G Suite]
 ---
