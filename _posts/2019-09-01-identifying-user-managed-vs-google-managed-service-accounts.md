@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Identifying user-managed and Google-managed service accounts"
-date: 2019-09-01 10:40:21 -0400
+date: 2019-09-01 00:00:00 -0400
 tags: [GCP]
 ---
 
