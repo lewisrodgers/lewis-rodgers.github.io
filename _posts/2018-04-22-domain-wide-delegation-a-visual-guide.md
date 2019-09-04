@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Domain-wide delegation—a visual guide"
+description: "Usually, at larger organizations, there's a separation of duties. Here's an example of how setting up domain-wide delegation for an app might look..."
 date: 2018-04-22 00:00:00 -0400
 tags: [G Suite, GCP]
 ---

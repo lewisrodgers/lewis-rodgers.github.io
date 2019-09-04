@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Mapping a custom domain to your App Maker app"
-description: "Shorten your App Maker deployment URL with custom domain mapping."
+description: "An App Maker deployment URL is long and gross. Learn how to create a short an memorable URL instead."
 image: ""
 date: 2019-09-03 00:00:00 -0400
 tags: [G Suite]
