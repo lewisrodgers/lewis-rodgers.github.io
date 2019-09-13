@@ -4,6 +4,8 @@ title: "Domain-wide delegation—a visual guide"
 description: "Usually, at larger organizations, there's a separation of duties. Here's an example of how setting up domain-wide delegation for an app might look..."
 date: 2018-04-22 00:00:00 -0400
 tags: [G Suite, GCP]
+image: /assets/posts/2018-04-22/actors.png
+image-alt: Illustration of 3 generic user icons labeled as GCP Admin, Developer, and G Suite Admin.
 ---
 An application may need to access information that belongs to an employee, or do something on their behalf. Things like, sending an email for them, or delete some of their calendar events. Usually, the user has a chance to review what the application will have access to — or **scope** — and choose whether or not to allow it. You'll know it as this screen:
 

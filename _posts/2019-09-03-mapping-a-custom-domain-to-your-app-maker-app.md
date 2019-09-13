@@ -1,10 +1,11 @@
 ---
 layout: post
 title: "Mapping a custom domain to your App Maker app"
-description: "An App Maker deployment URL is long and gross. Learn how to create a short an memorable URL instead."
-image: ""
+description: "An App Maker deployment URL is long and gross. Learn how to create a short memorable URL instead."
 date: 2019-09-03 00:00:00 -0400
 tags: [G Suite]
+image: "assets/posts/2019-09-03/featured.png"
+image-alt: "Illusration of the App Maker logo next to a faux custom domain."
 ---
 While it’s possible to map a friendlier URL to an App Maker deployment, it requires privileged access to your domain registrar or organization’s G Suite admin console. If you don’t have this level of clearance, then you’ll need to coordinate with your organization's admins to do some of the things described below.
 
