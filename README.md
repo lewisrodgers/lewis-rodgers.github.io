@@ -1,3 +1,3 @@
-# lewisrodgers.github.io
+# lewisrodgers.io
 
 Crafted unapologetically by hand.
